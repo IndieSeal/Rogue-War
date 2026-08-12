@@ -111,5 +111,6 @@ InitTestScene*.unity*
 /Temp
 
 # I can't distribute bought assets, so, yeah :[, srry about that haha
-/Assets/Plugins
+/Assets/Plugins/*
+!/Assets/Plugins/plugins.md
 /Assets/Sprites/Penusbmic
