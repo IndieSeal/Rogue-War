@@ -13,8 +13,8 @@ TagManager:
   - UI
   - ColorMask
   - ParticleColorMask
-  - 
-  - 
+  - NormalVolume
+  - GrayVolume
   - 
   - 
   - 

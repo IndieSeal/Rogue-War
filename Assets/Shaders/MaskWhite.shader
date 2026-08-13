@@ -31,6 +31,7 @@ Shader "Custom/MaskWhite"
             TEXTURE2D(_MainTex);
             SAMPLER(sampler_MainTex);
 
+            float4 _MainTex_ST;
             float4 _Color;
 
             struct Attributes
@@ -54,7 +55,9 @@ Shader "Custom/MaskWhite"
                 output.positionHCS =
                     TransformObjectToHClip(input.positionOS.xyz);
 
-                output.uv = input.uv;
+                output.uv =
+                    TRANSFORM_TEX(input.uv, _MainTex);
+
                 output.color = input.color;
 
                 return output;
@@ -62,14 +65,13 @@ Shader "Custom/MaskWhite"
 
             half4 frag(Varyings input) : SV_Target
             {
-                half4 tex =
-                    SAMPLE_TEXTURE2D(
-                        _MainTex,
-                        sampler_MainTex,
-                        input.uv
-                    );
+                half4 tex = SAMPLE_TEXTURE2D(
+                    _MainTex,
+                    sampler_MainTex,
+                    input.uv
+                );
 
-                float alpha =
+                half alpha =
                     tex.a *
                     input.color.a *
                     _Color.a;
